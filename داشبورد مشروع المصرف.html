@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<!-- saved from url=(0152)file:///C:/Users/MUNTHER/Downloads/%D8%AF%D8%A7%D8%B4%D8%A8%D9%88%D8%B1%D8%AF_%D9%85%D8%B4%D8%B1%D9%88%D8%B9_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%81_1.html -->
+<html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>داشبورد مشروع المصرف</title>
+<link rel="stylesheet" href="./داشبورد مشروع المصرف_files/tabler-icons.min.css">
+<style>
+  :root{
+    --bg: #F6F7FB;
+    --card: #FFFFFF;
+    --border: #E9E7FA;
+    --border-strong: #D6D2F5;
+    --text-primary: #1A1533;
+    --text-secondary: #5C5779;
+    --text-muted: #9C97B8;
+    --navy: #4C3FE0;
+    --navy-light: #6C5CE7;
+    --teal: #00A389;
+    --teal-light: #00D2A8;
+    --amber: #E08900;
+    --amber-light: #FFB020;
+    --red: #FF3B69;
+    --pink: #FF5A9E;
+    --radius: 12px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 32px 24px;
+  }
+  .wrap{max-width: 1180px; margin: 0 auto;}
+
+  /* Header */
+  .header{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+  }
+  .header h1{font-size: 24px; font-weight: 700; color: var(--navy);}
+  .header p{font-size: 14px; color: var(--text-secondary); margin-top: 4px;}
+  .header .badge{
+    background: linear-gradient(135deg, #6C5CE7, #FF5A9E); color: #fff; font-size: 13px; font-weight: 700;
+    padding: 9px 18px; border-radius: 999px; display:flex; align-items:center; gap:6px;
+    box-shadow: 0 4px 14px rgba(108,92,231,0.35);
+  }
+
+  /* Metric cards */
+  .metrics{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px; margin-bottom: 28px;
+  }
+  .metric{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 20px; position: relative; overflow: hidden;
+  }
+  .metric .icon{
+    width: 38px; height: 38px; border-radius: 9px; display:flex; align-items:center; justify-content:center;
+    font-size: 18px; margin-bottom: 12px;
+  }
+  .metric .label{font-size: 13px; color: var(--text-secondary); margin-bottom: 4px;}
+  .metric .value{font-size: 22px; font-weight: 700; color: var(--text-primary);}
+  .metric .sub{font-size: 12px; color: var(--text-muted); margin-top: 2px;}
+  .m-navy .icon{background:#EDEBFC; color: var(--navy);}
+  .m-teal .icon{background:#DFFAF3; color: var(--teal);}
+  .m-amber .icon{background:#FFF3DC; color: var(--amber);}
+  .m-red .icon{background:#FFE5EC; color: var(--red);}
+  .metric{border-top: 3px solid transparent;}
+  .m-navy{border-top-color: var(--navy-light);}
+  .m-teal{border-top-color: var(--teal-light);}
+  .m-amber{border-top-color: var(--amber-light);}
+  .m-red{border-top-color: var(--red);}
+
+  /* Section */
+  .card{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; margin-bottom: 24px;
+  }
+  .card-head{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
+  }
+  .card-head h2{font-size: 17px; font-weight: 700; color: var(--navy);}
+  .controls{display:flex; gap:10px; align-items:center; flex-wrap: wrap;}
+  input[type=text]{
+    padding: 8px 12px; border: 1px solid var(--border-strong); border-radius: 8px;
+    font-size: 13px; min-width: 220px; font-family: inherit;
+  }
+  input[type=text]:focus{outline: 2px solid var(--navy-light); outline-offset: 1px;}
+  select{
+    padding: 8px 12px; border: 1px solid var(--border-strong); border-radius: 8px;
+    font-size: 13px; font-family: inherit; background: #fff;
+  }
+
+  /* Gantt */
+  .gantt-scroll{overflow-x: auto; padding-bottom: 4px;}
+  .gantt{min-width: 900px;}
+  .gantt-months{
+    display:flex; margin-right: 260px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 8px;
+  }
+  .gantt-months span{
+    flex: 1; text-align:center; font-size: 12px; color: var(--text-secondary); font-weight: 600;
+  }
+  .gantt-row{
+    display:flex; align-items:center; height: 46px; border-bottom: 1px solid #F0F1F3;
+  }
+  .gantt-row:hover{background: #FAFBFC;}
+  .gantt-label{
+    width: 260px; flex-shrink:0; padding-right: 14px; font-size: 13px;
+    display:flex; flex-direction: column; justify-content:center;
+  }
+  .gantt-label .wbs{font-size: 11px; color: var(--text-muted); font-weight: 600;}
+  .gantt-label .name{color: var(--text-primary); font-weight: 500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .gantt-track{position: relative; flex:1; height: 100%;}
+  .gantt-bar{
+    position:absolute; top: 9px; height: 28px; border-radius: 8px;
+    cursor: pointer; transition: filter .15s, transform .15s, box-shadow .15s;
+    display:flex; align-items:center; padding: 0 10px; overflow:hidden;
+    box-shadow: 0 2px 6px rgba(76,63,224,0.18);
+  }
+  .gantt-bar:hover{filter: brightness(1.08); transform: translateY(-2px) scale(1.01); box-shadow: 0 6px 14px rgba(76,63,224,0.3);}
+  .gantt-bar span{font-size: 11px; color: #fff; font-weight: 700; white-space:nowrap;}
+  .today-line{
+    position:absolute; top:-4px; bottom:-4px; width: 2px; background: var(--red); z-index: 2;
+  }
+  .today-tag{
+    position:absolute; top:-22px; transform: translateX(50%); font-size: 10px; color: #fff;
+    font-weight:700; background: var(--red); padding: 2px 8px; border-radius: 999px; white-space:nowrap;
+  }
+  .gantt-legend{display:flex; gap:16px; margin-bottom:14px; flex-wrap:wrap; font-size:12px; color:var(--text-secondary);}
+  .gantt-legend span{display:flex; align-items:center; gap:6px;}
+  .gantt-legend i{width:12px; height:12px; border-radius:4px; display:inline-block;}
+
+  /* Table */
+  table{width:100%; border-collapse: collapse; font-size: 13px;}
+  thead th{
+    text-align: right; padding: 10px 12px; color: var(--text-secondary); font-weight: 600;
+    border-bottom: 1px solid var(--border); background: #FAFBFC; position: sticky; top:0;
+  }
+  tbody td{padding: 12px; border-bottom: 1px solid #F0F1F3;}
+  tbody tr:hover{background: #FAFBFC;}
+  .status-pill{
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; display:inline-block;
+  }
+  .st-upcoming{background:#EDEBFC; color: #6C5CE7;}
+  .st-active{background:#FFF3DC; color: #E08900;}
+  .st-done{background:#DFFAF3; color: #00A389;}
+
+  /* Detail panel */
+  .detail{
+    display:none; background:#FAFBFC; border:1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 22px; margin-bottom: 24px;
+  }
+  .detail.show{display:block;}
+  .detail-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 12px;}
+  .detail-head h3{font-size: 16px; color: var(--navy);}
+  .detail-close{cursor:pointer; color: var(--text-muted); font-size: 20px; line-height:1; background:none; border:none;}
+  .detail-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 14px;}
+  .detail-grid div .l{font-size: 12px; color: var(--text-muted);}
+  .detail-grid div .v{font-size: 14px; font-weight: 600; margin-top: 2px;}
+
+  footer{text-align:center; font-size: 12px; color: var(--text-muted); margin-top: 16px;}
+
+  @media (max-width: 640px){
+    .gantt-label{width: 160px; font-size: 12px;}
+    .gantt-months{margin-right: 160px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div>
+      <h1>مشروع المصرف — الجدول الزمني للتنفيذ</h1>
+      <p>نظرة عامة تفاعلية على مراحل المشروع من الإنشاء حتى التسليم النهائي</p>
+    </div>
+    <div class="badge"><i class="ti ti-building-bank"></i> WBS 1.0</div>
+  </div>
+
+  <div class="metrics" id="metrics">
+  <div class="metric m-navy">
+    <div class="icon"><i class="ti ti-calendar-event"></i></div>
+    <div class="label">مدة المشروع الكلية</div>
+    <div class="value">155 يوم</div>
+    <div class="sub">1 أغسطس 2026 → 3 يناير 2027</div>
+  </div>
+
+  <div class="metric m-teal">
+    <div class="icon"><i class="ti ti-list-check"></i></div>
+    <div class="label">عدد المراحل الفرعية</div>
+    <div class="value">10</div>
+    <div class="sub">0 منتهية، 0 قيد التنفيذ</div>
+  </div>
+
+  <div class="metric m-amber">
+    <div class="icon"><i class="ti ti-clock-hour-4"></i></div>
+    <div class="label">أيام حتى بدء المشروع</div>
+    <div class="value">23 يوم</div>
+    <div class="sub">اعتباراً من 9 يوليو 2026</div>
+  </div>
+
+  <div class="metric m-red">
+    <div class="icon"><i class="ti ti-flag"></i></div>
+    <div class="label">تاريخ التسليم النهائي</div>
+    <div class="value">3 يناير 2027</div>
+    <div class="sub">WBS 1.0</div>
+  </div>
+</div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>المخطط الزمني (Gantt)</h2>
+      <div class="controls">
+        <input type="text" id="search" placeholder="ابحث عن مهمة...">
+      </div>
+    </div>
+    <div class="gantt-legend">
+      <span><i style="background:#00D2A8;"></i>منتهية</span>
+      <span><i style="background:#FFB020;"></i>قيد التنفيذ</span>
+      <span><i style="background:#6C5CE7;"></i>قادمة</span>
+    </div>
+    <div class="gantt-scroll">
+      <div class="gantt">
+        <div class="gantt-months" id="ganttMonths"><span>أغسطس 2026</span><span>سبتمبر 2026</span><span>أكتوبر 2026</span><span>نوفمبر 2026</span><span>ديسمبر 2026</span><span>يناير 2027</span></div>
+        <div id="ganttBody">
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.1</span>
+        <span class="name">الهيكل الإنشائي والمدني الحصين</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:0.00%; width:27.74%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(2)" title="الهيكل الإنشائي والمدني الحصين
+1 أغسطس 2026 → 13 سبتمبر 2026
+قادمة">
+          <span>38 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.2</span>
+        <span class="name">الهيكل الحديدي والواجهات الخارجية</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:19.35%; width:18.06%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(3)" title="الهيكل الحديدي والواجهات الخارجية
+31 أغسطس 2026 → 28 سبتمبر 2026
+قادمة">
+          <span>25 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.3</span>
+        <span class="name">تأسيسات المنظومات والشبكات الأولية</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:22.58%; width:25.16%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(4)" title="تأسيسات المنظومات والشبكات الأولية
+5 سبتمبر 2026 → 14 أكتوبر 2026
+قادمة">
+          <span>35 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.4</span>
+        <span class="name">أعمال البياض الداخلي والإنهاءات الأولية</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:29.03%; width:10.32%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(5)" title="أعمال البياض الداخلي والإنهاءات الأولية
+15 سبتمبر 2026 → 1 أكتوبر 2026
+قادمة">
+          <span>15 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.5</span>
+        <span class="name">التغليف الميكانيكي والنفاذ المتحركة</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:38.71%; width:14.19%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(6)" title="التغليف الميكانيكي والنفاذ المتحركة
+30 سبتمبر 2026 → 22 أكتوبر 2026
+قادمة">
+          <span>20 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.6</span>
+        <span class="name">سحب القابلوات الرئيسية وكابلات البيانات</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:41.94%; width:14.19%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(7)" title="سحب القابلوات الرئيسية وكابلات البيانات
+5 أكتوبر 2026 → 27 أكتوبر 2026
+قادمة">
+          <span>20 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.7</span>
+        <span class="name">صب الأرضيات وتطبيق البورسلين والمرمر</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:50.97%; width:18.71%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(8)" title="صب الأرضيات وتطبيق البورسلين والمرمر
+19 أكتوبر 2026 → 17 نوفمبر 2026
+قادمة">
+          <span>26 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.8</span>
+        <span class="name">القواطع والإنهاءات المعمارية والسقوف</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:61.94%; width:18.06%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(9)" title="القواطع والإنهاءات المعمارية والسقوف
+5 نوفمبر 2026 → 3 ديسمبر 2026
+قادمة">
+          <span>25 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.9</span>
+        <span class="name">أعمال الطلاء والديكورات واللافتات 3D</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:74.84%; width:12.26%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(10)" title="أعمال الطلاء والديكورات واللافتات 3D
+25 نوفمبر 2026 → 14 ديسمبر 2026
+قادمة">
+          <span>17 يوم</span>
+        </div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS 1.10</span>
+        <span class="name">التركيبات النهائية والمنظومات الأمنية والبرمجة</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:81.29%; width:18.71%; background: linear-gradient(90deg, #6C5CE7, #8C7CF0);" onclick="showDetail(11)" title="التركيبات النهائية والمنظومات الأمنية والبرمجة
+5 ديسمبر 2026 → 3 يناير 2027
+قادمة">
+          <span>26 يوم</span>
+        </div>
+      </div>
+    </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>منحنى الإنجاز التراكمي (S-Curve)</h2>
+      <div class="controls">
+        <span style="font-size:12px; color:var(--text-muted);">نسبة الإنجاز المخططة تراكمياً عبر الزمن</span>
+      </div>
+    </div>
+    <div style="position:relative; height:340px;">
+      <canvas id="sCurve" role="img" aria-label="مخطط S-Curve يوضح نسبة الإنجاز التراكمي المخطط لمشروع المصرف من أغسطس 2026 حتى يناير 2027" width="1418" height="425" style="display: block; box-sizing: border-box; height: 340px; width: 1134px;">منحنى تراكمي للإنجاز المخطط للمشروع من 0% إلى 100% بين أغسطس 2026 ويناير 2027.</canvas>
+    </div>
+    <div style="display:flex; gap:16px; margin-top:14px; font-size:12px; color:var(--text-secondary);">
+      <span style="display:flex; align-items:center; gap:5px;"><span style="width:10px;height:10px;border-radius:3px;background:linear-gradient(90deg,#6C5CE7,#FF5A9E);"></span>الإنجاز المخطط التراكمي</span>
+      <span style="display:flex; align-items:center; gap:5px;"><span style="width:10px;height:2px;background:#FF3B69;"></span>اليوم</span>
+    </div>
+  </div>
+
+  <div class="detail" id="detail">
+    <div class="detail-head">
+      <h3 id="detailTitle"></h3>
+      <button class="detail-close" onclick="closeDetail()">×</button>
+    </div>
+    <div class="detail-grid" id="detailGrid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>قائمة المهام</h2>
+      <div class="controls">
+        <select id="statusFilter">
+          <option value="all">كل الحالات</option>
+          <option value="done">منتهية</option>
+          <option value="active">قيد التنفيذ</option>
+          <option value="upcoming">قادمة</option>
+        </select>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>WBS</th><th>اسم المهمة</th><th>المدة</th><th>البدء</th><th>الانتهاء</th><th>الحالة</th>
+          </tr>
+        </thead>
+        <tbody id="taskTable"><tr>
+      <td>2</td>
+      <td>1.1</td>
+      <td>الهيكل الإنشائي والمدني الحصين</td>
+      <td>38 يوم</td>
+      <td>1 أغسطس 2026</td>
+      <td>13 سبتمبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>3</td>
+      <td>1.2</td>
+      <td>الهيكل الحديدي والواجهات الخارجية</td>
+      <td>25 يوم</td>
+      <td>31 أغسطس 2026</td>
+      <td>28 سبتمبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>4</td>
+      <td>1.3</td>
+      <td>تأسيسات المنظومات والشبكات الأولية</td>
+      <td>35 يوم</td>
+      <td>5 سبتمبر 2026</td>
+      <td>14 أكتوبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>5</td>
+      <td>1.4</td>
+      <td>أعمال البياض الداخلي والإنهاءات الأولية</td>
+      <td>15 يوم</td>
+      <td>15 سبتمبر 2026</td>
+      <td>1 أكتوبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>6</td>
+      <td>1.5</td>
+      <td>التغليف الميكانيكي والنفاذ المتحركة</td>
+      <td>20 يوم</td>
+      <td>30 سبتمبر 2026</td>
+      <td>22 أكتوبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>7</td>
+      <td>1.6</td>
+      <td>سحب القابلوات الرئيسية وكابلات البيانات</td>
+      <td>20 يوم</td>
+      <td>5 أكتوبر 2026</td>
+      <td>27 أكتوبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>8</td>
+      <td>1.7</td>
+      <td>صب الأرضيات وتطبيق البورسلين والمرمر</td>
+      <td>26 يوم</td>
+      <td>19 أكتوبر 2026</td>
+      <td>17 نوفمبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>9</td>
+      <td>1.8</td>
+      <td>القواطع والإنهاءات المعمارية والسقوف</td>
+      <td>25 يوم</td>
+      <td>5 نوفمبر 2026</td>
+      <td>3 ديسمبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>10</td>
+      <td>1.9</td>
+      <td>أعمال الطلاء والديكورات واللافتات 3D</td>
+      <td>17 يوم</td>
+      <td>25 نوفمبر 2026</td>
+      <td>14 ديسمبر 2026</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr><tr>
+      <td>11</td>
+      <td>1.10</td>
+      <td>التركيبات النهائية والمنظومات الأمنية والبرمجة</td>
+      <td>26 يوم</td>
+      <td>5 ديسمبر 2026</td>
+      <td>3 يناير 2027</td>
+      <td><span class="status-pill st-upcoming">قادمة</span></td>
+    </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>تم إنشاء هذا الداشبورد آلياً من بيانات المشروع المرفوعة</footer>
+</div>
+
+<script>
+const tasks = [
+  {id:1, wbs:"1.0", name:"مشروع المصرف", dur:"134 يوم", start:"2026-08-01", end:"2027-01-03", main:true},
+  {id:2, wbs:"1.1", name:"الهيكل الإنشائي والمدني الحصين", dur:"38 يوم", start:"2026-08-01", end:"2026-09-13"},
+  {id:3, wbs:"1.2", name:"الهيكل الحديدي والواجهات الخارجية", dur:"25 يوم", start:"2026-08-31", end:"2026-09-28"},
+  {id:4, wbs:"1.3", name:"تأسيسات المنظومات والشبكات الأولية", dur:"35 يوم", start:"2026-09-05", end:"2026-10-14"},
+  {id:5, wbs:"1.4", name:"أعمال البياض الداخلي والإنهاءات الأولية", dur:"15 يوم", start:"2026-09-15", end:"2026-10-01"},
+  {id:6, wbs:"1.5", name:"التغليف الميكانيكي والنفاذ المتحركة", dur:"20 يوم", start:"2026-09-30", end:"2026-10-22"},
+  {id:7, wbs:"1.6", name:"سحب القابلوات الرئيسية وكابلات البيانات", dur:"20 يوم", start:"2026-10-05", end:"2026-10-27"},
+  {id:8, wbs:"1.7", name:"صب الأرضيات وتطبيق البورسلين والمرمر", dur:"26 يوم", start:"2026-10-19", end:"2026-11-17"},
+  {id:9, wbs:"1.8", name:"القواطع والإنهاءات المعمارية والسقوف", dur:"25 يوم", start:"2026-11-05", end:"2026-12-03"},
+  {id:10, wbs:"1.9", name:"أعمال الطلاء والديكورات واللافتات 3D", dur:"17 يوم", start:"2026-11-25", end:"2026-12-14"},
+  {id:11, wbs:"1.10", name:"التركيبات النهائية والمنظومات الأمنية والبرمجة", dur:"26 يوم", start:"2026-12-05", end:"2027-01-03"},
+];
+
+const TODAY = new Date("2026-07-09");
+const subtasks = tasks.filter(t=>!t.main);
+const mainTask = tasks.find(t=>t.main);
+
+const projStart = new Date(mainTask.start);
+const projEnd = new Date(mainTask.end);
+const totalDays = Math.round((projEnd - projStart)/86400000);
+
+function dayDiff(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
+function fmt(d){
+  const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+  const dt = new Date(d);
+  return `${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}`;
+}
+function status(t){
+  const s = new Date(t.start), e = new Date(t.end);
+  if(TODAY > e) return 'done';
+  if(TODAY >= s && TODAY <= e) return 'active';
+  return 'upcoming';
+}
+function statusLabel(s){
+  return s==='done' ? 'منتهية' : s==='active' ? 'قيد التنفيذ' : 'قادمة';
+}
+function statusClass(s){
+  return s==='done' ? 'st-done' : s==='active' ? 'st-active' : 'st-upcoming';
+}
+
+// Metrics
+const doneCount = subtasks.filter(t=>status(t)==='done').length;
+const activeCount = subtasks.filter(t=>status(t)==='active').length;
+const daysToStart = dayDiff(TODAY, projStart);
+const metrics = [
+  {icon:'ti-calendar-event', label:'مدة المشروع الكلية', value: totalDays + ' يوم', sub: fmt(mainTask.start) + ' → ' + fmt(mainTask.end), cls:'m-navy'},
+  {icon:'ti-list-check', label:'عدد المراحل الفرعية', value: subtasks.length, sub: doneCount + ' منتهية، ' + activeCount + ' قيد التنفيذ', cls:'m-teal'},
+  {icon:'ti-clock-hour-4', label: daysToStart >= 0 ? 'أيام حتى بدء المشروع' : 'أيام منذ بدء المشروع', value: Math.abs(daysToStart) + ' يوم', sub: 'اعتباراً من ' + fmt(TODAY.toISOString().slice(0,10)), cls:'m-amber'},
+  {icon:'ti-flag', label:'تاريخ التسليم النهائي', value: fmt(mainTask.end), sub: 'WBS ' + mainTask.wbs, cls:'m-red'},
+];
+document.getElementById('metrics').innerHTML = metrics.map(m => `
+  <div class="metric ${m.cls}">
+    <div class="icon"><i class="ti ${m.icon}"></i></div>
+    <div class="label">${m.label}</div>
+    <div class="value">${m.value}</div>
+    <div class="sub">${m.sub}</div>
+  </div>
+`).join('');
+
+// Gantt months header
+const monthNames = ["أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر","يناير"];
+document.getElementById('ganttMonths').innerHTML = monthNames.map(m=>`<span>${m} 2026</span>`).join('').replace('يناير 2026','يناير 2027');
+
+function renderGantt(filterText){
+  const body = document.getElementById('ganttBody');
+  const list = subtasks.filter(t => !filterText || t.name.includes(filterText));
+  body.innerHTML = list.map(t=>{
+    const left = (dayDiff(projStart, t.start)/totalDays*100).toFixed(2);
+    const width = Math.max((dayDiff(t.start, t.end)/totalDays*100), 1.5).toFixed(2);
+    const st = status(t);
+    const barColor = st === 'done'
+      ? 'background: linear-gradient(90deg, #00D2A8, #00B389);'
+      : st === 'active'
+      ? 'background: linear-gradient(90deg, #FFB020, #FF8A3D);'
+      : 'background: linear-gradient(90deg, #6C5CE7, #8C7CF0);';
+    return `
+    <div class="gantt-row">
+      <div class="gantt-label">
+        <span class="wbs">WBS ${t.wbs}</span>
+        <span class="name">${t.name}</span>
+      </div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="right:${left}%; width:${width}%; ${barColor}" onclick="showDetail(${t.id})" title="${t.name}
+${fmt(t.start)} → ${fmt(t.end)}
+${statusLabel(st)}">
+          <span>${t.dur}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // today line, only once
+  const todayLeft = (dayDiff(projStart, TODAY.toISOString().slice(0,10))/totalDays*100);
+  if(todayLeft >= 0 && todayLeft <= 100){
+    const track = document.createElement('div');
+    track.style.position = 'relative';
+    track.innerHTML = `<div class="today-line" style="right:${todayLeft}%;"><span class="today-tag">اليوم</span></div>`;
+    body.style.position = 'relative';
+    body.appendChild(track.firstElementChild.parentElement ? track.firstElementChild : track);
+  }
+}
+
+function renderTable(filterStatus){
+  const tbody = document.getElementById('taskTable');
+  const list = subtasks.filter(t => filterStatus==='all' || status(t)===filterStatus);
+  tbody.innerHTML = list.map(t=>{
+    const st = status(t);
+    return `<tr>
+      <td>${t.id}</td>
+      <td>${t.wbs}</td>
+      <td>${t.name}</td>
+      <td>${t.dur}</td>
+      <td>${fmt(t.start)}</td>
+      <td>${fmt(t.end)}</td>
+      <td><span class="status-pill ${statusClass(st)}">${statusLabel(st)}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function showDetail(id){
+  const t = subtasks.find(x=>x.id===id);
+  const st = status(t);
+  document.getElementById('detailTitle').textContent = t.name;
+  document.getElementById('detailGrid').innerHTML = `
+    <div><div class="l">رمز WBS</div><div class="v">${t.wbs}</div></div>
+    <div><div class="l">المدة</div><div class="v">${t.dur}</div></div>
+    <div><div class="l">تاريخ البدء</div><div class="v">${fmt(t.start)}</div></div>
+    <div><div class="l">تاريخ الانتهاء</div><div class="v">${fmt(t.end)}</div></div>
+    <div><div class="l">الحالة</div><div class="v"><span class="status-pill ${statusClass(st)}">${statusLabel(st)}</span></div></div>
+  `;
+  document.getElementById('detail').classList.add('show');
+  document.getElementById('detail').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function closeDetail(){
+  document.getElementById('detail').classList.remove('show');
+}
+
+document.getElementById('search').addEventListener('input', e=>{
+  renderGantt(e.target.value.trim());
+});
+document.getElementById('statusFilter').addEventListener('change', e=>{
+  renderTable(e.target.value);
+});
+
+renderGantt('');
+renderTable('all');
+
+// ---- S-Curve ----
+const totalDuration = subtasks.reduce((s,t)=> s + dayDiff(t.start, t.end), 0);
+const weights = subtasks.map(t => dayDiff(t.start, t.end) / totalDuration);
+
+function plannedProgressAt(date){
+  let cum = 0;
+  subtasks.forEach((t, i)=>{
+    const s = new Date(t.start), e = new Date(t.end);
+    let frac;
+    if(date <= s) frac = 0;
+    else if(date >= e) frac = 1;
+    else frac = dayDiff(t.start, date.toISOString().slice(0,10)) / dayDiff(t.start, t.end);
+    cum += weights[i] * frac;
+  });
+  return cum * 100;
+}
+
+const curveLabels = [];
+const curveData = [];
+let cursor = new Date(projStart);
+while(cursor <= projEnd){
+  curveLabels.push(fmt(cursor.toISOString().slice(0,10)));
+  curveData.push(Number(plannedProgressAt(cursor).toFixed(1)));
+  cursor.setDate(cursor.getDate() + 7);
+}
+if(curveLabels[curveLabels.length-1] !== fmt(projEnd.toISOString().slice(0,10))){
+  curveLabels.push(fmt(projEnd.toISOString().slice(0,10)));
+  curveData.push(100);
+}
+
+const todayIndex = (()=>{
+  let idx = 0, minDiff = Infinity;
+  cursor = new Date(projStart); let i = 0;
+  while(cursor <= projEnd){
+    const diff = Math.abs(cursor - TODAY);
+    if(diff < minDiff){ minDiff = diff; idx = i; }
+    cursor.setDate(cursor.getDate()+7); i++;
+  }
+  return idx;
+})();
+
+const todayLinePlugin = {
+  id: 'todayLine',
+  afterDraw(chart){
+    if(TODAY < projStart || TODAY > projEnd) return;
+    const xScale = chart.scales.x, yScale = chart.scales.y;
+    const totalSpan = projEnd - projStart;
+    const ratio = (TODAY - projStart) / totalSpan;
+    const x = xScale.left + ratio * (xScale.right - xScale.left);
+    const ctx = chart.ctx;
+    ctx.save();
+    ctx.strokeStyle = '#FF3B69';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5,4]);
+    ctx.beginPath();
+    ctx.moveTo(x, yScale.top);
+    ctx.lineTo(x, yScale.bottom);
+    ctx.stroke();
+    ctx.restore();
+  }
+};
+</script>
+<script src="./داشبورد مشروع المصرف_files/chart.umd.js.تنزيل"></script>
+<script>
+const sCtx = document.getElementById('sCurve').getContext('2d');
+const lineGradient = sCtx.createLinearGradient(0, 0, sCtx.canvas.width || 900, 0);
+lineGradient.addColorStop(0, '#6C5CE7');
+lineGradient.addColorStop(0.5, '#A855F7');
+lineGradient.addColorStop(1, '#FF5A9E');
+const fillGradient = sCtx.createLinearGradient(0, 0, 0, 320);
+fillGradient.addColorStop(0, 'rgba(108,92,231,0.35)');
+fillGradient.addColorStop(1, 'rgba(255,90,158,0.02)');
+
+new Chart(sCtx, {
+  type: 'line',
+  data: {
+    labels: curveLabels,
+    datasets: [{
+      label: 'الإنجاز المخطط التراكمي (%)',
+      data: curveData,
+      borderColor: lineGradient,
+      backgroundColor: fillGradient,
+      fill: true,
+      tension: 0.35,
+      pointRadius: 0,
+      pointBackgroundColor: '#FF5A9E',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 2,
+      pointHoverRadius: 7,
+      pointHoverBackgroundColor: '#6C5CE7',
+      pointHoverBorderColor: '#fff',
+      pointHitRadius: 12,
+      borderWidth: 3.5
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1A1533',
+        titleColor: '#fff',
+        bodyColor: '#E9E7FA',
+        padding: 12,
+        cornerRadius: 8,
+        displayColors: false,
+        callbacks: {
+          label: (ctx) => 'الإنجاز: ' + ctx.parsed.y + '%'
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: 0, max: 100,
+        ticks: { callback: (v)=> v + '%', color: '#9C97B8', font:{size:11} },
+        grid: { color: '#EFEDFB' }
+      },
+      x: {
+        ticks: { color: '#9C97B8', font:{size:10}, maxRotation: 45, autoSkip: true, maxTicksLimit: 10 },
+        grid: { display: false }
+      }
+    }
+  },
+  plugins: [todayLinePlugin]
+});
+</script>
+
+
+</body></html>
